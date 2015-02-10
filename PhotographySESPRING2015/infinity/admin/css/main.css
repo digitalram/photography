@@ -1,0 +1,179 @@
+/* CSS Document */
+@font-face {
+    font-family: 'BebasRegular';
+    src: url('/style/bebas.eot');
+    src: url('/style/bebas.svg#BebasRegular') format('svg')
+	url('/style/bebas.eot') format('embedded-opentype'),
+	url('/style/bebas.woff') format('woff'),
+	url('/style/bebas.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'GothamRegular';
+    src: url('/style/gotham-book.eot');
+    src: url('/style/gotham-book.svg#GothamRegular') format('svg'),
+	url('/style/gotham-book.eot') format('embedded-opentype'),
+	url('/style/gotham-book.woff') format('woff'),
+	url('/style/gotham-book.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'GothamBold';
+    src: url('/style/gotham-bold.eot');
+    src: url('/style/gotham-bold.svg#GothamBold') format('svg'),
+	url('/style/gotham-bold.eot') format('embedded-opentype'),
+	url('/style/gotham-bold.woff') format('woff'),
+	url('/style/gotham-bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'EccentricStdRegular';
+    src: url('/style/eccentricstd.eot');
+    src: url('/style/eccentricstd.eot') format('embedded-opentype'),
+	url('/style/eccentricstd.woff') format('woff'),
+	url('/style/eccentricstd.ttf') format('truetype'),
+	url('/style/eccentricstd.svg#EccentricStdRegular') format('svg');
+}
+body{
+	margin:0px;
+	padding:0px;	
+	min-width:900px;
+	background-color:#333;
+}
+*{
+	font-family:GothamRegular;
+	font-weight:normal;	
+	
+}
+h1, h2, h3, h4{
+	font-family:GothamBold;	
+	font-weight:normal;	
+}
+a{
+	color:#DDD;
+	text-decoration:none;	
+}
+a:hover{
+	color:#FFF;	
+}
+a#active{
+	color:#FFF;	
+}
+header{
+	text-align:center;
+}
+
+header h1{
+	margin:0px;
+	margin-top:-10px;
+	font-family:GothamBold;	
+	font-size:100px;
+	color:#FFF;
+	
+	display:inline-block;
+}
+header h1 span{
+	display:inline-block;
+	font-family:GothamRegular;
+	margin:0px;
+	color:#AAA;
+	font-size:30px;
+	
+}
+
+#top_header{
+	background-color:#DDD;
+	padding-bottom:1px;	
+	
+	background: -webkit-gradient(linear, center center, 0, center center, 0, from(#000), to(#222)); 
+	background: -webkit-linear-gradient(bottom, #000, #222);  
+	background: -moz-linear-gradient(bottom, #000, #222); 
+	background: -ms-linear-gradient(bottom, #000, #222);
+}
+#top_nav{
+	width:100%;
+	min-width:900px;
+	text-align:center;
+}
+#top_nav ul{
+	padding:0px;	
+}
+#top_nav ul li{
+	display:inline-block;
+	text-align:center;
+	padding:0px 10px;
+
+}
+#top_nav ul li a{
+	color:#FFCC00;
+}
+#top_nav ul li a:hover{
+	color:#FFF;
+}
+#wrapper{
+	margin:0px auto;
+	width:100%;
+	min-width:800px;
+}
+#wrapper .schedule{
+	padding-top:30px;
+	margin:0px 0px 0px 50px;
+	text-align:left;
+}
+#wrapper .schedule h1:first-child{
+	margin-top:0px;
+}
+#wrapper .schedule h1{
+	font-size:60px;	
+}
+
+#wrapper .schedule .section{
+	vertical-align: top;
+	width:325px;
+	height:275px;	
+	display:inline-block;
+	padding:10px 10px;
+	border:1px solid black;
+	background-color:white;
+}
+#wrapper .schedule .section h2{
+	margin:0px 20px;	
+	font-size:20px;
+}
+#wrapper .schedule .section ul{
+	margin:0px;	
+	padding:0px;
+}
+#wrapper .schedule .section ul li{
+	list-style-type:none;	
+	width:100%;
+	padding:8px 0px;
+	margin-left:0px;
+	overflow:hidden;
+}
+#wrapper .schedule .section ul li:nth-child(even){
+	background-color:#EEE;
+}
+#wrapper .schedule .section ul li p{
+	font-size:16px;
+	display:inline-block;
+	padding:0px;
+	margin:0px;
+	}
+#wrapper .schedule .section ul li p.name{
+	text-align:left;
+	padding-left:30px;
+	width:230px;
+}
+#wrapper .schedule .section ul li p.time{
+	float:right;
+	text-align:left;
+	width:60px;
+
+}
+
+
+
+
+#wrapper-body p {color:#fff;}
+
+#froms p{color:white}
+#wrapper h3{color:white}

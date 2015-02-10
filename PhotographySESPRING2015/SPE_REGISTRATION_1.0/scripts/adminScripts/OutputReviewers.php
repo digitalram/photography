@@ -1,0 +1,72 @@
+<?php
+// output.php BY Lee Jones ON 2/26/14
+// Purpose: outputs a query to a csv file and forces download
+// open the database connection file and connect to the database
+include(dirname(dirname(dirname(__FILE__))) . "/config.php"); // for sql connection ($con)
+$serverRoot =  $_SERVER['DOCUMENT_ROOT']  . dirname(dirname(dirname($_SERVER['PHP_SELF']))); // path to url root directory
+
+$filename =  $serverRoot . "/outputFiles/OrginizationalData_" . date("Y") . ".csv";
+
+
+//echo $serverRoot . "<br>";
+// set output filename 
+//$filename = $serverRoot . "/outputFiles/OrginizationalData_" . date("Y") . ".csv";
+echo $filename . "<br>";
+
+//$con=mysqli_connect("127.0.0.1","photography","photogroup", "photography");
+// all users for the current year
+$query = "SELECT * FROM REVIEWER WHERE D1Morning = 1 OR D1Midday = 1 OR D1Afternoon = 1 OR D2Morning = 1 OR D2Midday = 1 OR D2Afternoon = 1";
+
+$result = mysqli_query($con, $query);
+$numrows = mysqli_num_rows($result);		// get the number of rows
+
+if($numrows != 0)						// make sure the db isn't empty
+{
+	$fp = fopen($filename, "w") or die ("Unable to open file.");		// file pointer to filename for writing
+
+	$row = mysqli_fetch_assoc($result);	// get array headings
+
+	$sep = "";		// seperator
+	$comma = "";	// comma
+
+	// --get the column headers--------
+	foreach($row as $name => $value)
+	{
+		$sep .= $comma . '' . str_replace('', '""', $name);
+		$comma = ",";
+	}
+	$sep .= "\n";
+	
+	fwrite($fp, $sep);
+
+	// --get the data----------
+	mysqli_data_seek($result, 0);	//start at first line
+	
+	// get the tuples
+	while($row = mysqli_fetch_assoc($result))	// while getting tuples
+	{
+		$sep = "";		// seperator
+		$comma = "";	// comma
+
+		//get each value into $sep and comma seperate, end with line break
+		foreach($row as $name => $value)
+		{
+			$sep .= $comma . '' . str_replace('', '""', $value);
+			$comma = ",";
+		}
+		$sep .= "\n";
+		
+		fwrite($fp, $sep);
+	}
+
+	fclose($fp) or die ("couldn't close file.");
+	mysqli_close($con);
+
+	
+
+}
+else
+{
+	echo "Error: The database has no entries.";
+}
+?>

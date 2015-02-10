@@ -1,0 +1,4 @@
+<Files ~ "\.(htaccess|php|csv)$">
+order allow,deny
+deny from all
+</Files>

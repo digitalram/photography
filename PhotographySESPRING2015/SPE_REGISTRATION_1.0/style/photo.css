@@ -1,0 +1,127 @@
+﻿body
+{
+	background-color:#000;
+	text-align:left;
+	color:#B3B1B1;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size:small;
+}
+
+.roundedClass{	/* CSS for making the boxes all pretty and round */
+	border: 1px solid #ccc;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-moz-box-shadow: 2px 2px 3px #666;
+	-webkit-box-shadow: 2px 2px 3px #666;
+	box-shadow: 2px 2px 3px #666;
+	padding: 4px 7px;
+	outline: 0;
+	-webkit-appearance: none;
+	}
+	
+a{ /*code for making links fit the style */
+	color: #fc0;
+	text-transform:lowercase;
+	font-weight:bold;
+}
+
+a:hover {  /*hover links should be white */
+	color:#fff;
+}
+
+img
+{
+	display: block;
+	margin: auto;
+	margin-top: 30px;
+	margin-bottom: 60px;
+}
+
+table {
+	margin:auto;
+}
+
+.title {
+	color: #fc0;
+	font-size:medium;
+}
+
+.maintitle {
+	color: #fc0;
+	font-weight:bold;
+	text-align:center;
+	font-size:large;
+
+}
+
+.preference {
+	overflow:auto;	/* ensures scrollbar in selectbox*/
+
+	border: 1px solid #ccc;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-moz-box-shadow: 2px 2px 3px #666;
+	-webkit-box-shadow: 2px 2px 3px #666;
+	box-shadow: 2px 2px 3px #666;
+	padding: 4px 7px;
+	outline: 0;
+	-webkit-appearance: none;
+}
+
+.datepicker{
+	border: 1px solid #ccc;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-moz-box-shadow: 2px 2px 3px #666;
+	-webkit-box-shadow: 2px 2px 3px #666;
+	box-shadow: 2px 2px 3px #666;
+	padding: 4px 7px;
+	outline: 0;
+	-webkit-appearance: none;
+}
+
+.container{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 20px;
+}
+
+td{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	padding:5px;
+}
+
+#filterFeedback{
+	color: #fc0;
+	font-weight:bold;
+	text-align:center;
+}
+
+#adminSelect{
+	overflow:auto;	/* ensures scrollbar in selectbox*/
+
+	border: 1px solid #ccc;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-moz-box-shadow: 2px 2px 3px #666;
+	-webkit-box-shadow: 2px 2px 3px #666;
+	box-shadow: 2px 2px 3px #666;
+	padding: 4px 7px;
+	outline: 0;
+	-webkit-appearance: none;
+}
+
+td.left{
+	text-align: left;
+}
+
+option.grayText{
+	color:Gray Goose;
+}

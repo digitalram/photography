@@ -1,0 +1,58 @@
+/* CSS Document */
+@font-face {
+    font-family: 'BebasRegular';
+    src: url('./bebas.eot');
+    src: url('./bebas.svg#BebasRegular') format('svg')
+		 url('./bebas.eot') format('embedded-opentype'),
+         url('./bebas.woff') format('woff'),
+         url('./bebas.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'GothamRegular';
+    src: url('./style/gotham-book.eot');
+    src: url('./style/gotham-book.svg#GothamRegular') format('svg'),
+		 url('./style/gotham-book.eot') format('embedded-opentype'),
+         url('./style/gotham-book.woff') format('woff'),
+         url('./style/gotham-book.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'GothamBold';
+    src: url('./style/gotham-bold.eot');
+    src: url('./style/gotham-bold.svg#GothamBold') format('svg'),
+		 url('./style/gotham-bold.eot') format('embedded-opentype'),
+         url('./style/gotham-bold.woff') format('woff'),
+         url('./style/gotham-bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'EccentricStdRegular';
+    src: url('./style/eccentricstd.eot');
+    src: url('./style/eccentricstd.eot') format('embedded-opentype'),
+         url('./style/eccentricstd.woff') format('woff'),
+         url('./style/eccentricstd.ttf') format('truetype'),
+         url('./style/eccentricstd.svg#EccentricStdRegular') format('svg');
+}
+
+*{
+	font-family:GothamRegular;
+	
+}
+a{
+	color:black;
+	text-decoration:none;	
+}
+a:hover{
+	color:#666;	
+}
+
+#top_nav{
+	width:100%;
+	min-width:900px;
+	
+}
+#top_nav ul li{
+	display:inline-block;
+	text-align:center;
+	padding:0px 10px;
+
+}
