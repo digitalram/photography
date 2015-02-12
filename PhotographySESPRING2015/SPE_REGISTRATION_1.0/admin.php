@@ -17,7 +17,7 @@ if(isset($_SESSION['username']))
         $result = mysqli_query($con,$query);    // run the query
         $row = mysqli_fetch_array($result);
 
-        if ($row[userType] == "reviewer")
+        if ($row['userType'] == "reviewer")
  			header("location: " . $serverRoot . "/reviewer.php");	// change to address on server
 
  		mysqli_close($con);

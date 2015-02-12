@@ -1,7 +1,7 @@
 <?php
 	include("config.php"); // for sql connection ($con) 
 
-	session_start();
+	//session_start();
 	$email = $_SESSION['username'];
 	
 	$query = "SELECT Opportunity FROM OPPORTUNITIES"; // set the query (select all from table keywords)
