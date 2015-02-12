@@ -7,6 +7,7 @@ $Attendee = $_POST['attendee'];
 $Fname = $_POST['firstName'];
 $Lname = $_POST['lastName'];
 $Email = $_POST['email'];
+$Keywords = $_POST['keyword'];
 
 
 
@@ -15,7 +16,10 @@ if ($Attendee == "Student")
 else
 	$query = "INSERT INTO PROFESSIONAL VALUES ('$Fname', '$Lname', '$Email'";
 
-for ($i=1; $i<21; $i++)
+var_dump($Keywords);
+$max = sizeof($Keywords);
+
+for ($i=0; $i<max; $i++)
 {
 	if($preference = $_POST['preference' . $i])
 		$query = $query . ", '" . $preference . "'";

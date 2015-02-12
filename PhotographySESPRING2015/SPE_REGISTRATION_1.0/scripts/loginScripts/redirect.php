@@ -30,10 +30,10 @@ if (isset($_POST['username']) and isset($_POST['password']))
 		setcookie("user", $username, $expire, '/');
 		session_start();
 
-		if($row[userType] == "admin"){
+		if($row['userType'] == "admin"){
 			header("location: " . $serverRoot . "/admin.php");	// take to admin page
 		}
-		else if($row[userType] == "reviewer") {
+		else if($row['userType'] == "reviewer") {
 			header("location: " . $serverRoot . "/reviewer.php");	// take to reviewer page
 		}
 		

@@ -9,7 +9,7 @@ $query = "SELECT attFrom, attTo FROM REGISTRATION_PERIODS WHERE year = $year";
 $result = mysqli_query($con, $query);
 $row = mysqli_fetch_array($result);
 
-if (strtotime($date) < strtotime($row[attFrom]) || strtotime($row[attTo]) < strtotime($date))   // if not in registration period
+if (strtotime($date) < strtotime($row['attFrom']) || strtotime($row['attTo']) < strtotime($date))   // if not in registration period
     header("location: " . $serverRoot . "/notRegPeriod.php");                                              // redirect
 
 ?>       

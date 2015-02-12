@@ -1,7 +1,7 @@
 <?php 
 
 // intialize database connection
-$con =  mysqli_connect("127.0.0.1", "photography", "photogroup", "photography");
+$con =  mysqli_connect("127.0.0.1", "root", "", "spe_convention");
 
 
 //include("config.php"); // for sql connection ($con)
