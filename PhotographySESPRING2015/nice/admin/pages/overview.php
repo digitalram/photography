@@ -20,6 +20,7 @@
 	});
 </script>
 
+<!-- Moved to manageSchedule.php
 <table>
 	<tr>
 		<td><button class="bigAButton" id="btnCreateSchedule" type="button" onclick="javascript:admin.createSchedule();">Create Schedule</button></td>
@@ -30,6 +31,7 @@
 		<td>
 			for
 			<select id="registration_period">
+ 
 				<?php
 					$periods = framework::getMany("
 					SELECT
@@ -41,11 +43,12 @@
 					foreach($periods as $period) {
 						echo "<option value=\"". $period["registration_period_id"] ."\">". $period["year"] ."</option>";
 					}
-				?>
+				?> 
 			</select>
 		</td>
 	</tr>
 </table>
+-->
 
 <table>
 	<caption class="title">Information</caption>
