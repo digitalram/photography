@@ -8,6 +8,7 @@
 		<li><a href="#tabs-5">Manage Opportunities</a></li>
 		<li><a href="#tabs-6">Manage E-mail</a></li>
 		<li><a href="#tabs-7">Send E-mail</a></li>
+		<li><a href="#tabs-8">Manage Schedule</a></li>
 	</ul>
 	<!-- Overview -->
 	<div id="tabs-1">
@@ -34,5 +35,8 @@
 	</div>
 	<div id="tabs-7">
 		<?php include "pages/sendEmail.php"; ?>
+	</div>
+	<div id="tabs-8">
+		<?php include "pages/manageSchedule.php"; ?>
 	</div>
 </div>
