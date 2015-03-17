@@ -305,14 +305,14 @@
 			$toInsert 		= array();
 			$attendeeCache	= array();
 
-			// loop through attendees
+			// loop through reviewer
 			foreach($reviewers as $_reviewerKey => $reviewer) {
 
 				if($tableNumber > $maxTables) {
 					break;
 				}
 
-				// loop through reviewers
+				// loop through attendee
 				foreach($attendees as $_attendeeKey => $attendee) {
 
 					$attendeeId = $attendee["attendee_id"];
