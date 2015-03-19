@@ -22,7 +22,7 @@ function ExportDatabase()
 var admin = {
 
 	createSchedule: function() {
-
+	
 		$("#btnCreateSchedule").prop("value", "Please wait...");
 		$("#btnCreateSchedule").prop("disabled", true);
 
@@ -34,12 +34,32 @@ var admin = {
 			alert(
 				"Schedule created! Here's some statistics...\n\n" +
 				"Return message: "+ data.messages +"(if empty, ignore)\n\n" +
-				"Reviewers: " + data.reviewers + "\n\n" +
-				"Attendees: " + data.attendees + "\n\n"
+				
+				"Out of " + data.reg_reviewers + " registered reviewers, " + 
+				data.reviewers + " were added to schedule.\n\n" +
+				
+				"Out of " + data.reg_attend + " registered attendees, " + 
+				data.attendees + " were added to schedule.\n\n"
 			);
 
 		});
 
+	},
+	
+	/* MCM edits: */
+	clearSchedule: function() {
+		if(confirm("This will clear the current generated schedule.\n\nAre you sure you want to clear the schedle?"))
+		{
+			// what do these do???
+			$("#btnClearSchedule").prop("value", "Please wait...");
+			$("#btnClearSchedule").prop("disabled", true);
+
+			/* Wipe them out... all of them */
+			$.post("scripts/general/clearSchedule.php", {}, function(json) {
+				alert("Schedule cleared!\n");
+			});
+		}
+		
 	},
 
 	setMaxTables: function() {
