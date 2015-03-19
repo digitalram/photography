@@ -70,7 +70,34 @@
 			");
 
 		}
-
+		
+		/**
+		 * Return total number of registered reviewers
+		 *
+		 * No parameters
+		 *
+		 * @return int Number of registered reviewers
+		 */
+		public static function getTotalRegisteredReviewers() {
+			$query = "SELECT * FROM reviewers WHERE 1";
+			$total = framework::getMany($query);
+			return count($total);
+		}
+		
+		/**
+		 * Return total number of registered attendees
+		 *
+		 * No parameters
+		 *
+		 * @return int Number of registered attendees
+		 */
+		public static function getTotalRegisteredAttendees() {
+			$query = "SELECT * FROM attendees WHERE 1";
+			$total = framework::getMany($query);
+			return count($total);
+		}
+		
+		
 		/**
 		 * Return number of attendees for a registration period.
 		 *
@@ -221,7 +248,7 @@
 		public static function createSchedule($type, $registrationPeriodId, $enforceChoices = true) {
 
 			// todo: implement keyword
-
+	
 			// determine day from type
 			$day = "friday";
 			
@@ -305,14 +332,14 @@
 			$toInsert 		= array();
 			$attendeeCache	= array();
 
-			// loop through reviewer
+			// loop through attendees
 			foreach($reviewers as $_reviewerKey => $reviewer) {
 
 				if($tableNumber > $maxTables) {
 					break;
 				}
 
-				// loop through attendee
+				// loop through reviewers
 				foreach($attendees as $_attendeeKey => $attendee) {
 
 					$attendeeId = $attendee["attendee_id"];

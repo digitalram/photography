@@ -43,10 +43,12 @@
 	// professional
 	$professionalRet = app::createSchedule("professional", $regPeriod["registration_period_id"]);
 
+	// Error message creation...
 	if($studentRet !== true) {
 		$messages .= $studentRet . "\n\n";
 	}
 
+	// Error message creation...
 	if($professionalRet !== true) {
 		$messages .= $professionalRet .= $professionalRet . "\n";
 	}
@@ -55,10 +57,14 @@
 
 	$numAttendees = app::getTotalAttendees($regPeriod["registration_period_id"]);
 	$numReviewers = app::getTotalReviewers($regPeriod["registration_period_id"]);
-
+	$numRegisteredAttendees = app::getTotalRegisteredAttendees();
+	$numRegisteredReviewers = app::getTotalRegisteredReviewers();
+	
 	$ret["messages"] = $messages;
 	$ret["attendees"] = $numAttendees;
 	$ret["reviewers"] = $numReviewers;
+	$ret["reg_attend"] = $numRegisteredAttendees;
+	$ret["reg_reviewers"] = $numRegisteredReviewers;
 
 	echo json_encode($ret);
 
