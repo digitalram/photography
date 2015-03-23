@@ -60,7 +60,8 @@
 
 			$password = md5($password);
 
-			// query db for POST'd creds
+
+			// query db for POST'd crds
 			$user = self::getOne("
 				SELECT
 					*
@@ -71,7 +72,7 @@
 					AND
 					password = '". $password ."'
 			");
-
+			var_dump($user);
 			// successful login!
 			if(isset($user["first_name"])) {
 				// set basic session vars
@@ -171,7 +172,7 @@
 			if(config::$isProduction) {
 				header("Location: http://". $_SERVER["HTTP_HOST"] . "/~sef14photo/nice/" . $page);
 			} else {
-				header("Location: http://". $_SERVER["HTTP_HOST"] . "/nice/" . $page);
+				header("Location: http://". $_SERVER["HTTP_HOST"] . "/photography/photography/PhotographySESPRING2015/nice/" . $page);
 			}
 
 			ob_end_flush();

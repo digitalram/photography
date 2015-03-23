@@ -11,6 +11,9 @@
 		
 		$actionQuery = "SELECT * from users where email_address = '$Email' AND user_type = 'reviewer'";
 		$q = framework::getOne($actionQuery);
+
+
+
 		if(empty($q))
 		{
 			$pass = substr(md5(microtime()), 0, 8);
@@ -151,7 +154,7 @@
 								$query = $query . ", saturday_afternoon = NULL";
 							}
 						}
-						$query = $query . " WHERE user_id = '$userID'";
+						$query = $query . " WHERE user_id = '$userId'";
 						framework::execute($query);
 			
 			//set time slot information from post data
@@ -212,6 +215,58 @@
 			}
 			framework::execute($query);
 		}
+
+		//insert the keyword information
+		$actionQuery = "SELECT user_id from users where email_address = '$Email' AND user_type = 'reviewer'";
+		//$q should now be our user_id
+
+		//we will use the user id to insert and remove from our genres and opportunity tables.
+		$q = framework::getOne($actionQuery);
+		$user_ID = $q['user_id'];
+
+		//if the user is already in here we should remove them from the genres and opportunity tables becase
+		//	we are going to re insert them.
+		$remove = "delete from reviewer_genre where user_id = $user_ID";
+		framework::execute($remove);
+		$remove = "delete from reviewer_opps where user_id = $user_ID";
+		framework::execute($remove);
+
+		//$_POST['keyword'] holds an array of our genres selected by our reviewer
+		//die($q['user_id']);
+		$keywords = $_POST['keyword'];
+		//gets last element of array to compare so we can format our query
+		$last_key = end($keywords);
+
+		$query = "Insert into reviewer_genre (user_id, keyword_id) values";
+		foreach($keywords as $key ){
+			//checks if last element in array so we can format query
+			if($key == $last_key){
+				$query .= "($user_ID, '$key');";
+			}
+			else{
+				$query .= "($user_ID, '$key'),";
+			}
+		}
+		framework::execute($query);
+
+		//this code is the same as above just with opporutnities
+		$opps = $_POST['opportunity'];
+		$last_key = end($opps);
+
+		$query = "Insert into reviewer_opps (user_id, opportunity) values";
+		foreach($opps as $key ){
+			//checks if last element in array so we can format query
+			if($key == $last_key){
+				$query .= "($user_ID, '$key');";
+			}
+			else{
+				$query .= "($user_ID, '$key'),";
+			}
+		}		
+
+		framework::execute($query);
+
+
 		framework::redirect("index.php?page=submission");
 	}
     

@@ -1,5 +1,4 @@
 <?php
-    require_once "bootstrap.php";
 	
     framework::includeScript("reviewer", "js", "reviewer");
     framework::includeScript("reviewer", "js", "revSelect");

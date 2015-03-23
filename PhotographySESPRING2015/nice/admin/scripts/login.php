@@ -8,7 +8,7 @@
 		$email		= framework::clean($request["email_address"]);
 		$password	= framework::clean($request["password"]);
 
-		$redirect = "http://" . $_SERVER["HTTP_HOST"] . "";
+		$redirect = "http://" . $_SERVER["HTTP_HOST"] . "/photography/photography/PhotographySESPRING2015/";
 
 		// user has entered correct credentials
 		if(framework::login($email, $password)) {
