@@ -1,10 +1,10 @@
 CREATE TABLE IF NOT EXISTS `reviewer_opps` (
   `user_id` int(11) NOT NULL,
-  `opportunity` varchar(200) NOT NULL
+  `opp_id` int(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 
 
 CREATE TABLE IF NOT EXISTS `reviewer_genre` (
   `user_id` int(11) NOT NULL,
-  `keyword_id` varchar(200) NOT NULL
+  `keyword_id` int(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
