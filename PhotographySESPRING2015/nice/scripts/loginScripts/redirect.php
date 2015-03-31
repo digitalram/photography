@@ -28,7 +28,6 @@ if (isset($_POST['username']) and isset($_POST['password']))
 		
 		setcookie("user", $username, $expire, '/');
 		session_start();
-		die($row['userType']);
 		if($row['userType'] == "admin"){
 			header("location: " . $adminRoot . "/admin.php");	// take to admin page
 		}

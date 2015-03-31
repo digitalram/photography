@@ -1,6 +1,6 @@
 <?php
 	
-	$query = "SELECT name FROM keyword_definition";
+	$query = "SELECT name, keyword_definition_id FROM keyword_definition";
 	$result = framework::getMany($query);
 	$numrows = count($result);
 	
@@ -29,12 +29,12 @@
 			$resulti = framework::getMany($queryi);
 			$count = count($resulti);
 			if($count)
-				echo "\t\t\t\t<td class='left'><input type=\"checkbox\" name=\"keyword[]\" class=\"keyword\" value=\"" . $resulti['name'] . "\" checked >" . $resulti['name'] . "</td>\n";
+				echo "\t\t\t\t<td class='left'><input type=\"checkbox\" name=\"keyword[]\" class=\"keyword\" value=\"" . $resulti['keyword_definition_id'] . "\" checked >" . $resulti['name'] . "</td>\n";
 			else
-				echo "\t\t\t\t<td class='left'><input type=\"checkbox\" name=\"keyword[]\" class=\"keyword\" value=\"" . $resulti['name'] . "\" >" . $resulti['name'] . "</td>\n";
+				echo "\t\t\t\t<td class='left'><input type=\"checkbox\" name=\"keyword[]\" class=\"keyword\" value=\"" . $resulti['keyword_definition_id'] . "\" >" . $resulti['name'] . "</td>\n";
 		}
 		else
-			echo "\t\t\t\t<td class='left'><input type=\"checkbox\" name=\"keyword[]\" class=\"keyword\" value=\"" . $row['name'] . "\" >" . $row['name'] . "</td>\n";
+			echo "\t\t\t\t<td class='left'><input type=\"checkbox\" name=\"keyword[]\" class=\"keyword\" value=\"" . $row['keyword_definition_id'] . "\" >" . $row['name'] . "</td>\n";
 		
 		$i++;
 		

@@ -8,10 +8,8 @@
 		$Lname = $_POST['lastName'];
 		$Email = $_POST['email'];
 		$Bio = $_POST['bio'];
-		
 		$actionQuery = "SELECT * from users where email_address = '$Email' AND user_type = 'reviewer'";
 		$q = framework::getOne($actionQuery);
-
 
 
 		if(empty($q))
@@ -90,7 +88,8 @@
 			$reviewerID = $reviewerID["reviewer_id"];
 			
 			//email user/reviewer
-			$emailer->sendMailToReviewer($reviewerID, "new_password", array("password" => $pass));
+			//password_reset needs to change to something else
+			$emailer->sendMailToReviewer($reviewerID, "password_reset", array("password" => $pass));
 		}
 		else
 		{
@@ -218,12 +217,9 @@
 
 		//insert the keyword information
 		$actionQuery = "SELECT user_id from users where email_address = '$Email' AND user_type = 'reviewer'";
-		//$q should now be our user_id
-
 		//we will use the user id to insert and remove from our genres and opportunity tables.
 		$q = framework::getOne($actionQuery);
 		$user_ID = $q['user_id'];
-
 		//if the user is already in here we should remove them from the genres and opportunity tables becase
 		//	we are going to re insert them.
 		$remove = "delete from reviewer_genre where user_id = $user_ID";
@@ -252,8 +248,7 @@
 		//this code is the same as above just with opporutnities
 		$opps = $_POST['opportunity'];
 		$last_key = end($opps);
-
-		$query = "Insert into reviewer_opps (user_id, opportunity) values";
+		$query = "Insert into reviewer_opps (user_id, opp_id) values";
 		foreach($opps as $key ){
 			//checks if last element in array so we can format query
 			if($key == $last_key){
@@ -263,7 +258,6 @@
 				$query .= "($user_ID, '$key'),";
 			}
 		}		
-
 		framework::execute($query);
 
 

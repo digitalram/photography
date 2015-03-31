@@ -1,6 +1,6 @@
 <?php
 	
-	$query = "SELECT name FROM opportunity_definition";
+	$query = "SELECT name, opportunity_definition_id FROM opportunity_definition";
 	$result = framework::getMany($query);
 	$numrows = count($result);
 	echo "\n\t\t<table>\n";					// start the table
@@ -21,12 +21,12 @@
 			$resulti = framework::getMany($queryi);
 			$count = count($resulti);
 			if($count)		// if a match is found, check the box
-				echo "\t\t\t\t<td class='left'><input type=\"checkbox\" name=\"opportunity[]\" class=\"opportunity\" onchange=\"UpdateFilter()\" value=\"" . $resulti['name'] . "\" checked >" . $resulti['name'] . "</td>\n";
+				echo "\t\t\t\t<td class='left'><input type=\"checkbox\" name=\"opportunity[]\" class=\"opportunity\" onchange=\"UpdateFilter()\" value=\"" . $resulti['opportunity_definition_id'] . "\" checked >" . $resulti['name'] . "</td>\n";
 			else
-				echo "\t\t\t\t<td class='left'><input type=\"checkbox\" name=\"opportunity[]\" class=\"opportunity\" onchange=\"UpdateFilter()\" value=\"" . $resulti['name'] . "\" >" . $resulti['name'] . "</td>\n";
+				echo "\t\t\t\t<td class='left'><input type=\"checkbox\" name=\"opportunity[]\" class=\"opportunity\" onchange=\"UpdateFilter()\" value=\"" . $resulti['opportunity_definition_id'] . "\" >" . $resulti['name'] . "</td>\n";
 		}
 		else
-			echo "\t\t\t\t<td class='left'><input type=\"checkbox\" name=\"opportunity[]\" class=\"opportunity\" onchange=\"UpdateFilter()\" value=\"" . $row['name'] . "\" >" . $row['name'] . "</td>\n"; 
+			echo "\t\t\t\t<td class='left'><input type=\"checkbox\" name=\"opportunity[]\" class=\"opportunity\" onchange=\"UpdateFilter()\" value=\"" . $row['opportunity_definition_id'] . "\" >" . $row['name'] . "</td>\n"; 
 		
 		$i++;
 		
