@@ -17,6 +17,12 @@ if($row) {
 	$attTo = date_create($row['attendee_until']);
 	$attTo = date_format($attTo, $dateFormat);
 	$maxTables = $row['max_tables'];
+	$maxAttendees = $row['attendees_match_limit'];
+	if( $maxAttendees == '' ){
+		$maxAttendees = "None";
+	}
+	$shortSaturdays = $row['short_saturdays'];
+	
 
 	$html = "";
 	$html.= "<table>";
@@ -31,6 +37,14 @@ if($row) {
 	$html.= "	<tr>";
 	$html.= "		<td style=\"text-align: right !important;\"><b>Number of Tables</b></td>";
 	$html.=	"		<td style=\"text-align: left !important;\" id=\"tdMaxTables\">". $maxTables ."</td>";
+	$html.=	"	</tr>";
+	$html.= "	<tr>";
+	$html.= "		<td style=\"text-align: right !important;\"><b>Attendees Match Limit</b></td>";
+	$html.=	"		<td style=\"text-align: left !important;\" id=\"tdMaxAttendees\">". $maxAttendees ."</td>";
+	$html.=	"	</tr>";
+	$html.= "	<tr>";
+	$html.= "		<td style=\"text-align: right !important;\"><b>Short Saturdays Set?</b></td>";
+	$html.=	"		<td style=\"text-align: left !important;\" id=\"tdShortSaturdays\">". $shortSaturdays ."</td>";
 	$html.=	"	</tr>";
 	$html.= "</table>";
 

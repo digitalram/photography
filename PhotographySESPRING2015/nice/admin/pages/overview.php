@@ -15,6 +15,7 @@
 			}
 
 			admin.getMaxTables();
+			admin.getMaxAttendees();
 
 		});
 	});
@@ -58,20 +59,37 @@
 </table>
 
 <table>
-	<caption class="title">Number of Tables</caption>
+	<caption class="title">Maximum Number of Tables</caption>
 	<tr>
 		<th>Enter Number:</th>
 		<th><input type="text" id="max_tables" /></th>
-	</tr>
-	<tr>
-		<td align="center" colspan="2">
-			<button type="button" class=roundedClass" onclick="javascript:admin.setMaxTables();">Save</button>
-		</td>
+		<th><button type="button" class="roundedClass" onclick="javascript:admin.setMaxTables();">Save</button></th>
 	</tr>
 </table>
 
 <br/>
+<table>
+	<caption class="title">Maximum Attendee Matches</caption>
+	<tr>
+		<th>Enter Number:</th>
+		<th><input type="text" id="max_attendees" /></th>
+		<th><button type="button" class="roundedClass" onclick="javascript:admin.setMaxAttendees();">Save</button></th>
+	</tr>
+</table>
 
+<br/>
+<table width="150">
+	<caption class="title">Set Short Saturdays</caption>
+	<tr>
+		<th><select id="short_sats">
+					<option value="no">No</option>
+					<option value="yes">Yes</option>
+			</select></th>
+		<th><button type="button" class="roundedClass" onclick="javascript:admin.setShortSaturdays();">Save</button></th>
+	</tr>
+</table>
+
+<br/>
 <table>
 	<caption class="title">Set Registration Periods</caption>
 	<tr>

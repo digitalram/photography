@@ -46,9 +46,25 @@ var admin = {
 
 	},
 	
-	/* MCM edits: */
+	/* MCM edits: - placeholder */
 	clearSchedule: function() {
-		if(confirm("This will clear the current generated schedule.\n\nAre you sure you want to clear the schedle?"))
+		if(confirm("This will clear the current generated schedule.\n\nAre you sure you want to clear the schedule?"))
+		{
+			// what do these do???
+			$("#btnClearSchedule").prop("value", "Please wait...");
+			$("#btnClearSchedule").prop("disabled", true);
+
+			/* Wipe them out... all of them */
+			$.post("scripts/general/clearSchedule.php", {}, function(json) {
+				alert("Schedule cleared!\n");
+			});
+		}
+		
+	},
+	
+	/* MCM edits: - placeholder */
+	publishSchedule: function() {
+		if(confirm("Jabba Wonka No Botha"))
 		{
 			// what do these do???
 			$("#btnClearSchedule").prop("value", "Please wait...");
@@ -83,7 +99,6 @@ var admin = {
 	},
 
 	getMaxTables: function() {
-
 		$.post("scripts/general/getMaxTables.php", {}, function(json) {
 			var result = $.parseJSON(json);
 
@@ -97,6 +112,68 @@ var admin = {
 
 	},
 
+	/* Set 'attendees_match_limit' column in 'registration_periods' table */
+	setMaxAttendees: function() {
+		/* Get data from form post */
+		var attendees = $("#max_attendees").val();
+
+		var data = {
+			/* Column Name: Value */
+			attendees_match_limit: attendees
+		};
+
+		$.post("scripts/general/saveMaxAttendees.php", data, function(json) {
+			var result = $.parseJSON(json);
+
+			if(result.status == "success") {
+				$("#tdMaxAttendees").html(attendees);
+			} else {
+				alert(result.status);
+			}
+		});
+
+	},	
+	
+	getMaxAttendees: function() {
+		$.post("scripts/general/getMaxAttendees.php", {}, function(json) {
+			var result = $.parseJSON(json);
+
+			if(result.status == "success") {
+				var maxAttendees = result.data;
+
+				$("#tdMaxAttendees").html(maxAttendees);
+				$("#max_attendees").val(maxAttendees);
+			}
+		});
+
+	},	
+	
+	/* Set 'short_saturdays' column in 'registration_periods' table */
+	setShortSaturdays: function() {
+
+		/* Get data from form post */
+		var saturdayStatus = $("#short_sats").val();
+
+		var data = {
+			/* Column Name: Value */
+			short_saturdays: saturdayStatus
+		};
+
+		$.post("scripts/general/saveShortSaturdays.php", data, function(json) {
+			var result = $.parseJSON(json);
+
+			if(result.status == "success") {
+				$("#tdShortSaturdays").html(saturdayStatus);
+			} else {
+				alert(result.status);
+			}
+		});
+
+	},		
+	
+	
+	
+	
 	clearPeriods: function() {
 
 		if(confirm("This will clear the current registration periods.\n\nAre you sure you want to do this?"))
