@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `registration_periods` (
   `reviewer_from` date NOT NULL,
   `reviewer_until` date NOT NULL,
   `max_tables` int(11) NOT NULL,
-  `atttendees_match_limit` int(10) unsigned DEFAULT NULL COMMENT 'Set maximum limit an attendee can be matched to a reviewer',
+  `attendees_match_limit` int(10) unsigned DEFAULT NULL COMMENT 'Set maximum limit an attendee can be matched to a reviewer',
   `schedule_created` enum('yes','no') NOT NULL DEFAULT 'no',
   `schedule_published` enum('no','yes') NOT NULL DEFAULT 'no',
   `short_saturdays` enum('no','yes') NOT NULL DEFAULT 'no',
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `registration_periods` (
 -- Dumping data for table `registration_periods`
 --
 
-INSERT INTO `registration_periods` (`registration_period_id`, `year`, `attendee_from`, `attendee_until`, `reviewer_from`, `reviewer_until`, `max_tables`, `atttendees_match_limit`, `schedule_created`, `schedule_published`, `short_saturdays`) VALUES
+INSERT INTO `registration_periods` (`registration_period_id`, `year`, `attendee_from`, `attendee_until`, `reviewer_from`, `reviewer_until`, `max_tables`, `attendees_match_limit`, `schedule_created`, `schedule_published`, `short_saturdays`) VALUES
 (1, 2015, '2015-02-23', '2015-03-28', '2015-02-22', '2015-03-27', 45, NULL, 'yes', 'no', 'no');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
