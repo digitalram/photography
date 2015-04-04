@@ -2,6 +2,9 @@
 
 	// include bootstrap
 	require_once "../bootstrap.php";
+	
+	// mcm - add scheduler classes for testing
+	require_once "../includes/schedule.php";
 
 	// dynamically depict environment we're currently in
 	if(strpos($_SERVER["HTTP_HOST"], "localhost") !== false) {

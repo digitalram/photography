@@ -22,6 +22,10 @@
 
 <table>
 	<tr>
+		<?php 
+		// scripts below are in admin\scripts\admin.js
+		?>
+		
 		<td><button class="bigAButton" id="btnCreateSchedule" type="button" onclick="javascript:admin.createSchedule();">Create Schedule</button></td>
 		<td><button class="bigAButton" id="btnPublishSchedule" type="button" onclick="javascript:admin.publishSchedule();">Publish Schedule</button></td>
 		<td><button class="bigAButton" id="btnClearAttendees" type="button" onclick="javascript:admin.clearSchedule();">Clear Schedule
@@ -30,5 +34,3 @@
 </table>
 
 <h3>Schedule Below...</h3>
-
-

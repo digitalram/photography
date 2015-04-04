@@ -23,56 +23,68 @@ var admin = {
 
 	createSchedule: function() {
 	
+		/* Disable create schedule button after pressing */
 		$("#btnCreateSchedule").prop("value", "Please wait...");
 		$("#btnCreateSchedule").prop("disabled", true);
+		
+		/* Creation of schedule enables Publish and Clear Buttons */
+		$("#btnPublishSchedule").prop("disabled", false);
+		$("#btnClearAttendees").prop("disabled", false);
 
 
 		$.post("scripts/general/createSchedule.php", {}, function(json) {
 
 			var data = $.parseJSON(json);
 
-			alert(
-				"Schedule created! Here's some statistics...\n\n" +
-				"Return message: "+ data.messages +"(if empty, ignore)\n\n" +
-				
-				"Out of " + data.reg_reviewers + " registered reviewers, " + 
-				data.reviewers + " were added to schedule.\n\n" +
-				
-				"Out of " + data.reg_attend + " registered attendees, " + 
-				data.attendees + " were added to schedule.\n\n"
-			);
-
+			// TODO:  for some reason this alert isn't firing after schedule is created...
+			alert("Fix this alert (admin.js)" );
 		});
 
 	},
 	
-	/* MCM edits: - placeholder */
+	/* Clears current registration year schedule */
 	clearSchedule: function() {
 		if(confirm("This will clear the current generated schedule.\n\nAre you sure you want to clear the schedule?"))
 		{
-			// what do these do???
-			$("#btnClearSchedule").prop("value", "Please wait...");
-			$("#btnClearSchedule").prop("disabled", true);
+			/* Disable create schedule button after pressing */
+			$("#btnClearAttendees").prop("value", "Please wait...");
+			$("#btnClearAttendees").prop("disabled", true);
+			
+			/* Clearing Schedule re-enables Create Schedule Button */
+			$("#btnCreateSchedule").prop("disabled", false); 
 
 			/* Wipe them out... all of them */
 			$.post("scripts/general/clearSchedule.php", {}, function(json) {
-				alert("Schedule cleared!\n");
+			
+				/* Grab any data returned from function(json) call */
+				var data = $.parseJSON(json);
+				
+				/* Display some statistics / messages */
+				alert("Schedule cleared " + data.count + " session entries.\n" + data.status);
 			});
 		}
 		
 	},
 	
-	/* MCM edits: - placeholder */
+	/* Publishes current registration year's schedule for all to view */
 	publishSchedule: function() {
-		if(confirm("Jabba Wonka No Botha"))
+		if(confirm("Publishing Schedule will make the schedule active to all users.\n\nAre you sure you would like to publish?"))
 		{
-			// what do these do???
-			$("#btnClearSchedule").prop("value", "Please wait...");
-			$("#btnClearSchedule").prop("disabled", true);
+			/* Disable publish schedule button after pressing */
+			$("#btnPublishSchedule").prop("value", "Please wait...");
+			$("#btnPublishSchedule").prop("disabled", true);
+			
+			/* Enable Clear Schedule Button after pressing */
+			$("#btnClearAttendees").prop("disabled", false);
 
-			/* Wipe them out... all of them */
-			$.post("scripts/general/clearSchedule.php", {}, function(json) {
-				alert("Schedule cleared!\n");
+			/* Flag this thing published */
+			$.post("scripts/general/publishSchedule.php", {}, function(json) {
+			
+				/* Grab any data returned from function(json) call */
+				var data = $.parseJSON(json);
+				
+				/* Display some statistics / messages */
+				alert(data.status);
 			});
 		}
 		

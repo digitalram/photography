@@ -1,21 +1,15 @@
 <?php
 
 	require_once "../../../bootstrap.php";
-
+	require_once "../../../scheduler.php";
 	error_reporting(E_ALL);
 
-	// params
+	/* Get Current Year */
 	$currentYear = date("Y");
+	$query = "SELECT * FROM registration_periods WHERE year = '". $currentYear ."'";
 
-	// registration period check
-	$regPeriod = framework::getOne("
-		SELECT
-			*
-		FROM
-			registration_periods
-		WHERE
-			year = '". $currentYear ."'
-	");
+	/* Get Current Registration Period Information */
+	$regPeriod = framework::getOne($query);
 
 	// check if we have a registration period to base the schedule on
 	if(empty($regPeriod)) {
@@ -35,37 +29,10 @@
 		return;
 	}
 
-	$messages = "";
+	/* Create the Schedule */
+	Scheduler::MakeSchedule($regPeriod["registration_period_id"]);
 
-	// student
-	$studentRet = app::createSchedule("student", $regPeriod["registration_period_id"]);
-
-	// professional
-	$professionalRet = app::createSchedule("professional", $regPeriod["registration_period_id"]);
-
-	// Error message creation...
-	if($studentRet !== true) {
-		$messages .= $studentRet . "\n\n";
-	}
-
-	// Error message creation...
-	if($professionalRet !== true) {
-		$messages .= $professionalRet .= $professionalRet . "\n";
-	}
-
-	$ret = array();
-
-	$numAttendees = app::getTotalAttendees($regPeriod["registration_period_id"]);
-	$numReviewers = app::getTotalReviewers($regPeriod["registration_period_id"]);
-	$numRegisteredAttendees = app::getTotalRegisteredAttendees();
-	$numRegisteredReviewers = app::getTotalRegisteredReviewers();
-	
-	$ret["messages"] = $messages;
-	$ret["attendees"] = $numAttendees;
-	$ret["reviewers"] = $numReviewers;
-	$ret["reg_attend"] = $numRegisteredAttendees;
-	$ret["reg_reviewers"] = $numRegisteredReviewers;
-
-	echo json_encode($ret);
+	echo json_encode(array("status" => "The schedule has been successfully created."));
+	//echo json_encode($ret);
 
 ?>

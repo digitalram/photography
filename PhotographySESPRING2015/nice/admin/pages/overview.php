@@ -2,9 +2,11 @@
 
 <script type="text/javascript">
 	$(function() {
+		
 		$.post("scripts/general/loadOverview.php", {}, function(json) {
 			var data = $.parseJSON(json);
-
+			
+		/* The following is not needed since schedule buttons were removed to their own tab 
 			if(data.publish_schedule == false) {
 				$("#btnPublishSchedule").prop("value", "Unpublish Schedule");
 			}
@@ -13,43 +15,13 @@
 			if(data.create_schedule == false) {
 				$("#btnCreateSchedule").prop("disabled", true);
 			}
-
+		*/
 			admin.getMaxTables();
 			admin.getMaxAttendees();
 
 		});
 	});
 </script>
-
-<!-- Moved to manageSchedule.php
-<table>
-	<tr>
-		<td><button class="bigAButton" id="btnCreateSchedule" type="button" onclick="javascript:admin.createSchedule();">Create Schedule</button></td>
-		<td><button class="bigAButton" id="btnPublishSchedule" type="button" onclick="javascript:admin.publishSchedule();">Publish Schedule</button></td>
-	</tr>
-	<tr>
-		<td><button class="bigAButton" id="btnClearAttendees" type="button" onclick="javascript:admin.clearSchedule();">Clear Schedule</button></td>
-		<td>
-			for
-			<select id="registration_period">
- 
-				<?php
-					$periods = framework::getMany("
-					SELECT
-						*
-					FROM
-						registration_periods
-					");
-
-					foreach($periods as $period) {
-						echo "<option value=\"". $period["registration_period_id"] ."\">". $period["year"] ."</option>";
-					}
-				?> 
-			</select>
-		</td>
-	</tr>
-</table>
--->
 
 <table>
 	<caption class="title">Information</caption>
