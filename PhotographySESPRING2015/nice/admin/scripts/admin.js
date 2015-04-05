@@ -31,13 +31,13 @@ var admin = {
 		$("#btnPublishSchedule").prop("disabled", false);
 		$("#btnClearAttendees").prop("disabled", false);
 
-
 		$.post("scripts/general/createSchedule.php", {}, function(json) {
-
+			
+			/* Grab any data returned from function(json) call */
 			var data = $.parseJSON(json);
 
-			// TODO:  for some reason this alert isn't firing after schedule is created...
-			alert("Fix this alert (admin.js)" );
+			/* Display some statistics / messages */
+			alert(data.status );
 		});
 
 	},

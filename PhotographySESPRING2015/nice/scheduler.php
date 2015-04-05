@@ -296,12 +296,13 @@ class Scheduler
 	 *
 	 * @param array $Tables - pre-initialized array of Table Objects
 	 * @param array $Attendees - pre-initialized array of Attendee objects
+	 * @param bool $shortSaturdaysFlag - pass this in so that we can check for Short Saturdays
 	 *
 	 * @return int $matched - returns number of available table spots that were filled
 	 */
-	protected static function FillTables( $Tables, $Attendees )
+	protected static function FillTables( $Tables, $Attendees, $match_limit, $shortSaturdaysFlag )
 	{	
-		$MAX_ASSIGNED = 4;
+		$MAX_ASSIGNED = $match_limit;
 		$matched = 0;		// keep track of number of matches for analytic reasons...
 		
 		/* Iterate over number of possible reviewers in attendee class (20) */
@@ -312,10 +313,23 @@ class Scheduler
 					if( count($a->get_list()) > $c ){
 						if( (!$t->isFull()) and ($a->get_assigned() <= min($c, $MAX_ASSIGNED-1)) and ($a->get_reviewer($c) === $t->getReviewerId()) )
 						{
-							//echo "<P>count:".$a->get_assigned()." min:".min($c, $MAX_ASSIGNED-1);
-							$t->addAttendee($a->get_id());
-							$a->bump();
-							$matched++;
+							/* If the special case where Short Saturdays flag is set, 
+							 * and the table date ID = 'S3', then we will fill table 
+							 * at 4 instead of default */
+							if( $shortSaturdaysFlag and $t->getDaySlot() === "S3" ){
+								if( !$t->isFull(4) ){
+									$t->addAttendee($a->get_id());
+									$a->bump();
+									$matched++;
+								}
+								/* Otherwise we do not fill here */
+							}
+							else {
+								//echo "<P>count:".$a->get_assigned()." min:".min($c, $MAX_ASSIGNED-1);
+								$t->addAttendee($a->get_id());
+								$a->bump();
+								$matched++;
+							}
 						}
 						//echo "<p>".strval($a->get_id())."-".strval($a->get_reviewer($c));
 					}
@@ -323,8 +337,11 @@ class Scheduler
 			}
 		}
 		
-		/* NEED TO TEST THE FOLLOWING */
+		/* The following attempted to match unassigned attendees, but it was 
+         * decided to not do this
+		 */
 		/* Try to assign attendees who have not been assigned to empty table slots */
+		/*
 		foreach($Attendees as $a){
 			// Look for attendees who have not been assigned 
 			if( $a->get_assigned() === 0 ){
@@ -339,6 +356,7 @@ class Scheduler
 				}
 			}
 		}
+		*/
 
 		return $matched;
 	}
@@ -396,25 +414,37 @@ class Scheduler
 	 *
 	 * @param int $registrationPeriodId - saves sessions under this ID
 	 *
-	 * @return void (TODO: return statistics on schedule creation??)
+	 * @return void 
 	 *****************************************************/
 	public static function MakeSchedule($registrationPeriodId)
 	{
+		/* Need to check if short Saturdays flag is active and get maximum attendees match variable */
+		$shortSaturdays = false;
+		$sql = "SELECT * FROM registration_periods WHERE registration_period_id = '".$registrationPeriodId."'";
+		$data = framework::getOne($sql);
+		
+		if( $data["short_saturdays"] === 'yes' ){
+			$shortSaturdays = true;
+		}
+		$match_limit = $data["attendees_match_limit"];
+
 		/* Do Friday Schedule */
 		$Tables = self::makeTables("Friday");
 		$Attendees = self::MakeAttendees("Friday");
 
-		$matched = self::FillTables( $Tables, $Attendees );
-		echo "<p>Friday Scheduler matched ".$matched." out of ".(count($Tables)*6)."." ;
+		$matched = self::FillTables( $Tables, $Attendees, $match_limit, false );
+		//outputing the following will break the alert box in Manage Schedule tab (admin.js)
+		//echo "<p>Friday Scheduler matched ".$matched." out of ".(count($Tables)*6)."." ;
 		
 		self::InsertTablesToSessions( $Tables , $registrationPeriodId );
-			
+		
 		/* Do Saturday Schedule */
 		$Tables = self::makeTables("Saturday");
 		$Attendees = self::MakeAttendees("Saturday");
 
-		$matched = self::FillTables( $Tables, $Attendees );
-		echo "<p>Saturday Scheduler matched ".$matched." out of ".(count($Tables)*6)."." ;
+		$matched = self::FillTables( $Tables, $Attendees, $match_limit, $shortSaturdays );
+		//outputing the following will break the alert box in Manage Schedule tab (admin.js)
+		//echo "<p>Saturday Scheduler matched ".$matched." out of ".(count($Tables)*6)."." ;
 		
 		self::InsertTablesToSessions( $Tables , $registrationPeriodId );
 		

@@ -31,8 +31,13 @@
 
 	/* Create the Schedule */
 	Scheduler::MakeSchedule($regPeriod["registration_period_id"]);
+	
+	/* Let's grab some statistics */
+	$count_query = "SELECT COUNT(*) AS count FROM session WHERE registration_period_id = ". $regPeriod["registration_period_id"] ."";
+	$count = framework::getOne($count_query);
+	$message = "The schedule has been successfully created.\n" . (string)$count["count"] . " sessions created.";
 
-	echo json_encode(array("status" => "The schedule has been successfully created."));
+	echo json_encode(array("status" => $message));
 	//echo json_encode($ret);
 
 ?>
