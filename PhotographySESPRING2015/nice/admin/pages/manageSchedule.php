@@ -4,7 +4,7 @@
 	$(function() {
 		$.post("scripts/general/loadOverview.php", {}, function(json) {
 			var data = $.parseJSON(json);
-
+			
 			if(data.publish_schedule == false) {
 				$("#btnPublishSchedule").prop("value", "Unpublish Schedule");
 			}

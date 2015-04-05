@@ -18,9 +18,10 @@ class Table
 		$this->attendees = array();
 	}
 	
-	public function isFull()
+	public function isFull( $max_override = self::MAX_ATTENDEES )
 	{
-		return count($this->attendees) >=  self::MAX_ATTENDEES;
+		//return count($this->attendees) >=  self::MAX_ATTENDEES;
+		return count($this->attendees) >=  $max_override;
 	}
 	
 	public function getReviewerId()
