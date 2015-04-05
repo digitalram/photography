@@ -472,7 +472,11 @@ var admin = {
 
 		$.post("scripts/attendee/removeAttendee.php", data, function(json) {
 			var result = $.parseJSON(json);
+			
+			/* Now working properly */
+			alert("Successfully deleted " + result.name + " from " + result.counter + " tables.\n");
 
+			/* Fancy fade-out effect on current listed table */
 			if(result.status == "success") {
 				$("tr#attendee_row_" + attendeeId).find("td").each(function(i, td) {
 					$(td).css({

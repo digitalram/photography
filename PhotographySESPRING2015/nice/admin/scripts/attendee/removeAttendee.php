@@ -9,6 +9,13 @@
 	$attendeeId = framework::clean($request["attendeeId"]);
 	$registrationPeriodId = framework::clean($request["registrationPeriodId"]);
 
+	/* Get attendees name for status confirmation message */
+	$query = "SELECT first_name, last_name FROM users JOIN attendees as a 
+	          WHERE a.attendee_id = ". $attendeeId ." and users.user_id = a.user_id";
+	$names = framework::getOne($query);
+	$name = $names["first_name"] . " " . $names["last_name"];
+	
+	
 	// get session_ids
 	$sessions = framework::getMany("
 	SELECT
@@ -47,6 +54,11 @@
 		"attendee_id6"
 	);
 
+	/* Hold statistics to return */
+	$ret = array();
+	
+	$remove_counter = 0;
+	
 	// loop, update
 	foreach($sessions as $session) {
 		$sessionId = $session["session_id"];
@@ -61,6 +73,9 @@
 		}
 
 		// exec
+		$query = "UPDATE session SET ". $fieldName ." = NULL WHERE ". $fieldName ." = ". $attendeeId ."";
+		framework::execute($query);
+		/*
 		framework::execute("
 		UPDATE
 			`session`
@@ -69,8 +84,15 @@
 		WHERE
 			session_id = '". $attendeeId ."'
 		");
+		*/
+		$remove_counter++;
 	}
 
-	echo json_encode(array("status" => "success"));
+	$ret["status"] = "success";
+	$ret["counter"] = $remove_counter;
+	$ret["name"] = $name;
+	
+	//echo json_encode(array("status" => "success"));
+	echo json_encode($ret);
 
 ?>
