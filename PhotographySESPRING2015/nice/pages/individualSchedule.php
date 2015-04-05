@@ -9,7 +9,7 @@
 ?>
 
 <!-- Write schedule header -->
-<h1 style="padding-left: 15px;"><?php echo "Master Schedule ". (($session == "") ? "" : " - " . $session); ?></h1>
+<h1 style="padding-left: 15px;"><?php if(isset($_SESSION["first_name"]) && isset($_SESSION["last_name"])) echo $_SESSION["first_name"] . " " . $_SESSION["last_name"] ?></h1>
 <p style="padding-left: 15px;"><a href="" onclick="window.print();">Print this Schedule (to download schedule, print as a PDF).</a></p>
 <hr />
 <div class="schedule">
@@ -48,7 +48,7 @@
 		LEFT JOIN attendees a6 ON session.attendee_id6 = a6.attendee_id
 		LEFT JOIN users au6 ON a6.user_id = au6.user_id
 	WHERE
-		session.registration_period_id = 1
+		session.registration_period_id = " . $registrationPeriodId . "
 		AND r.user_id = '" . $user_id . "'
 		OR au1.user_id = '" . $user_id . "'
 		OR au2.user_id = '" . $user_id . "'

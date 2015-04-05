@@ -1,7 +1,10 @@
-<?php include_once "bootstrap.php"; ?>
+<?php 
+include_once "bootstrap.php";
+$request = framework::getRequestVars();
+?>
 
 <!-- Write schedule header -->
-<h1 style="padding-left: 15px;"><?php echo "Master Schedule ". (($session == "") ? "" : " - " . $session); ?></h1>
+<h1 style="padding-left: 15px;">Master Schedule<?php if(isset($request["session"])) echo " - " . $request["session"] ?></h1>
 <p style="padding-left: 15px;"><a href="" onclick="window.print();">Print this Schedule (to download schedule, print as a PDF).</a></p>
 <hr />
 <div class="schedule">
@@ -9,8 +12,6 @@
 <?php
 	$registrationPeriod		= app::getCurrentRegistrationPeriod();
 	$registrationPeriodId	= $registrationPeriod["registration_period_id"];
-
-	$request = framework::getRequestVars();
 
 	$session_sql = 
 	"SELECT
@@ -40,7 +41,7 @@
 		LEFT JOIN attendees a6 ON session.attendee_id6 = a6.attendee_id
 		LEFT JOIN users au6 ON a6.user_id = au6.user_id
 	WHERE
-		session.registration_period_id = 1 ";
+		session.registration_period_id = " . $registrationPeriodId . " ";
 		
 	if(isset($request["session"])) {
 		$session_sql .= "AND session.day_slot = '" . $request["session"] . "' ";
