@@ -1,5 +1,5 @@
 <?php
-
+	/*
 	if(app::isRegistrationOpen()) {
 		echo '<div class="search">
 			<h3>To find the schedule for a specific person,<br/> type that person\'s name in the box below.</h3>
@@ -22,9 +22,9 @@
 			</p>';
 	}
 
-	/*framework::includeScript("general", "js", "nav");*/
+	//framework::includeScript("general", "js", "nav");
 	framework::includeScript("general", "js", "pdf");
 	framework::includeScript("general", "js", "print.preview");
 	framework::includeScript("general", "js", "search");
-
+	*/
 ?>

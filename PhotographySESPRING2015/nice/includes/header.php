@@ -1,3 +1,7 @@
+<?php 
+	include_once "bootstrap.php"; 
+?>
+
 <!doctype html>
 <html>
 	<head>
@@ -29,18 +33,25 @@
 		    </header>
 		    <nav id="top_nav">
 		        <ul>
-		        	<li <?= ($controller == 'reviewerSchedule') ? "id=\"active\"" : "" ?>>
+		        	<!--<li <?= ($controller == 'reviewerSchedule') ? "id=\"active\"" : "" ?>>
 		        		<a href="./index.php?page=reviewerSchedule">Reviewer Schedule</a>
 		        	</li>
 		        	<li <?= ($controller == 'attendeeSchedule') ? "id=\"active\"" : "" ?>>
 		        		<a href="./index.php?page=attendeeSchedule">Attendee Schedule</a>
-		        	</li>
+		        	</li>-->
 		        	<li <?= ($controller == 'masterSchedule') ? "id=\"active\"" : "" ?>>
 		        		<a href="./index.php?page=masterSchedule">Master Schedule</a>
 		        		<ul>
-		        			<li><a href="./index.php?page=masterSchedule&day=friday">friday schedule</a></li>
-		                    <li><a href="./index.php?page=masterSchedule&day=saturday">saturday schedule</a></li>
+		        			<li><a href="./index.php?page=masterSchedule&session=F1">friday morning</a></li>
+							<li><a href="./index.php?page=masterSchedule&session=F2">friday midday</a></li>
+							<li><a href="./index.php?page=masterSchedule&session=F3">friday afternoon</a></li>
+		                    <li><a href="./index.php?page=masterSchedule&session=S1">saturday morning</a></li>
+							<li><a href="./index.php?page=masterSchedule&session=S2">saturday midday</a></li>
+							<li><a href="./index.php?page=masterSchedule&session=S3">saturday afternoon</a></li>
 		        		</ul>
+		        	</li>
+					<li <?= ($controller == 'individualSchedule') ? "id=\"active\"" : "" ?>>
+						<a href="./index.php?page=individualSchedule" <?php if(!isset($_SESSION["user_id"])) { ?>class="inactive"<?php } ?>>Individual Schedule</a>
 		        	</li>
 		        </ul>
 	        </nav>

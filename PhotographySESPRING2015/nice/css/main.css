@@ -111,7 +111,7 @@ header hr{
 #top_nav ul li ul{
 	position:absolute;
 	display:none;
-	left:50%;
+	left:24%;
 	top:42px;
 	z-index:1;
 	border-radius:0px 0px 3px 3px;
@@ -125,7 +125,6 @@ header hr{
 	background: -webkit-linear-gradient(bottom, #222, #444);  
 	background: -moz-linear-gradient(bottom, #222 #444); 
 	background: -ms-linear-gradient(bottom, #222, #444);
-
 }
 #top_nav ul li ul li:nth-child(first){
 	height:10px;
@@ -358,7 +357,10 @@ div.pdf p a:hover{
 	color:#DDAA00;	
 }
 
-
-
+#top_nav ul li a.inactive {
+	color:#CCC;
+	pointer-events: none;
+	cursor: default;
+}
 
 
