@@ -6,7 +6,7 @@
 	$numrows = count($result);
 	
 	echo "\n\t\t<table>\n";
-	echo "<caption><div class=\"title\">What genres describe your work? </div></caption>";
+	echo "<caption><div class=\"title\">Which genres describe your work? </div></caption>";
 	
 	//while($row = mysqli_fetch_array($result))
 	
