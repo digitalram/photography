@@ -16,8 +16,8 @@ for( $i = 0; $i < 5; $i++ )
 	
 	for( $j = 0; $j < 4; $j++ )
 	{
-		echo "\t\t\t\t<td align=\"right\">" . $label . ".)</td><td><select id=\"preference" . $label . "\" name=\"preference" . $label . "\" class=\"preference\" >\n";
-		echo "\t\t\t\t\t<option value=\"default\" disabled selected>No results</option>\n";
+		echo "\t\t\t\t<td align=\"right\">" . $label . ".)</td><td><select disabled id=\"preference" . $label . "\" name=\"preference" . $label . "\" class=\"preference\" >\n";
+		echo "\t\t\t\t\t<option value=\"default\" disabled selected>Select Preference</option>\n";
 		echo "\t\t\t\t</select></td>\n";
 		$label++;
 	}

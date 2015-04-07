@@ -40,6 +40,10 @@
 		<div class="container">	<!-- filter opportunities -->
 			<center><?php framework::includeScript("attendee", "php", "attOpportunities"); ?></center>
 		</div>
+		<div class="container">
+				In order to select your Reviewer preferences below, you must have selected at least one Genre or Opportunity above.
+				<br />
+				<br />
 		<div class="container">	<!-- 20 preference selectboxes -->
 			<center><span id="topTwenty"><?php framework::includeScript("attendee", "php", "createPrefList"); ?></span></center>
 		</div>

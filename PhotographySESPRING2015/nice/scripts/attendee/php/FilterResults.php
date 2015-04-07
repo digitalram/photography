@@ -38,7 +38,7 @@ for( $i = 0; $i < 5; $i++ )
 	for( $j = 0; $j < 4; $j++ )
 	{
 		echo "\t\t\t\t<td>" . $label . ".)</td><td><select id=\"preference" . $label . "\" name=\"preference" . $label . "\" class=\"preference\" >\n";
-		echo "\t\t\t\t\t<option value=\"default\" disabled selected>Select preference</option>\n";
+		echo "\t\t\t\t\t<option value=\"default\" disabled selected>Select Preference</option>\n";
 		foreach($result as $row)
 		{
 			if (in_array($row["keyword_id"], $keywords) && !in_array($row["reviewer_id"], $revList)) {
@@ -50,7 +50,7 @@ for( $i = 0; $i < 5; $i++ )
 
 		unset($revList);
 		$revList = array();
-		
+
 		$label++;
 	}
 	echo "\t\t\t</tr>\n";

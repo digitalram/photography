@@ -58,7 +58,9 @@ function EmptyFilter()
     if (dom.selectedIndex == 0)                     // empty the selecboxes that don't have a selection
       dom.options.length=0;
 
-    dom.options[0] = new Option ("No results", "default", true);   // set first option to default value
+    dom.disabled = true;
+
+    dom.options[0] = new Option ("Select Preference", "default", true);   // set first option to default value
     dom.options[0].disabled = true;
   }                                
 }
