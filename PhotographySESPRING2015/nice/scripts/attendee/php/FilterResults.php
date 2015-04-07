@@ -47,7 +47,6 @@ $opp_result = framework::getMany($opp_query);
 
 $label = 1;
 echo "<table >";
-echo count($opp_result);
 for( $i = 0; $i < 5; $i++ )
 {
 	echo "\t\t\t<tr>";
