@@ -1,7 +1,7 @@
 <?php
 	require_once "bootstrap.php";
 
-	$query = "SELECT name FROM keyword_definition";
+	$query = "SELECT keyword_definition_id, name FROM keyword_definition";
 	$result = framework::getMany($query);
 	$numrows = count($result);
 	
@@ -27,7 +27,7 @@
 			echo "\t\t\t<tr>\n"; 
 		}
 	
-		echo "\t\t\t\t<td class='left'><input type=\"checkbox\" name=\"keyword[]\" class=\"keyword\" onchange=\"UpdateFilter()\" value=\"" . $row['name'] . "\" >" . $row['name'] . "</td>\n"; 
+		echo "\t\t\t\t<td class='left'><input type=\"checkbox\" name=\"keyword[]\" class=\"keyword\" onchange=\"UpdateFilter()\" value=\"" . $row['keyword_definition_id'] . "\" >" . $row['name'] . "</td>\n"; 
 		
 		$i++;
 		

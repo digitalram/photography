@@ -32,12 +32,7 @@
 					<?php } ?>
 			</table>
 		</div>
-		<div class="container">
-			<center>In the selections below, you are currently <span id="filterLabel">not filtering Reviewers.<br><b>Select student or professional above.</b><input type="checkbox" id="filter" name="filter" checked onClick="UpdateFilter()"></span> Click to toggle filter</center>
-			<div id="filterFeedback"></div>
-			
-			<!-- insert filter feedback here. -->
-		</div>
+		
 			<div class="container">	<!-- filter genres(keywords) -->
 				<center><?php framework::includeScript("attendee", "php", "keywordAttendee"); ?>
 			</center>
