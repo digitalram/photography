@@ -5,13 +5,7 @@
  */
 function UpdateFilter()
 {
-  console.log("updated filter");
-  /*if (document.getElementById("filter").checked)
-  {
-    document.getElementById("filterLabel").innerHTML="filtering reviewers.<input type=\"checkbox\" id=\"filter\" name=\"filter\" checked onClick=\"UpdateFilter()\">"; // set filtering status label
-    */
-
-	//get user's type: student or professional
+	  //get user's type: student or professional
     var attendee = document.getElementsByName("attendee");
     var userType;
     for (var i = 0; i < attendee.length; i++)
@@ -35,10 +29,9 @@ function UpdateFilter()
       if(dom[i].checked)
         opportunity.push(dom[i].value);
     
-    if (keywords.length==0 || opportunity.length==0 || !userType)  // if no selectboxes checked revert to no filter
+    if (keywords.length==0 && opportunity.length==0)  // if no selectboxes checked revert to no filter
     {
-      //document.getElementById("filterFeedback").innerHTML="";
-      //RevertFilter();
+      EmptyFilter();
     }
     else
     {
@@ -54,29 +47,6 @@ function UpdateFilter()
         });
       });
     }
-  /*}
-  else
-  {
-    document.getElementById("filterFeedback").innerHTML="";
-    document.getElementById("filterLabel").innerHTML="not filtering Reviewers.<input type=\"checkbox\" id=\"filter\" name=\"filter\" onClick=\"UpdateFilter()\">"; // set filtering status label
-    RevertFilter();
-  }*/
-}
-
-//__________________________________________________________________
-// revert a filter to original values
-function RevertFilter()
-{
-  /*$(document).ready(function()
-  {
-    $.post("scripts/attendee/php/topTwenty.php",{'fromJs' : 'fromJs'}, function(data, success)
-    {
-		if (data)                                             // if query returned results
-		{
-			document.getElementById("topTwenty").innerHTML=data;
-		}
-    });
-  });*/
 }
 
 function EmptyFilter()

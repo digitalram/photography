@@ -5,11 +5,13 @@ $keywords = $_POST['keywords'];
 $opportunity = $_POST['opportunity'];
 $userType = $_POST['userType'];
 
+$revList = array();
+
 /*Probably need what was the REV_xxxxx tables to find the reviewer choices
 	-then just select that stuff based on what was given in the $keywords
 		and $opportunity and print it.*/
 		
-$query = "SELECT DISTINCT r.reviewer_id, k.keyword_id, u.first_name, u.last_name
+$query = "SELECT r.reviewer_id, k.keyword_id, u.first_name, u.last_name
 				from users u
 				join reviewer_genre k
 				on u.user_id = k.user_id
@@ -39,9 +41,16 @@ for( $i = 0; $i < 5; $i++ )
 		echo "\t\t\t\t\t<option value=\"default\" disabled selected>Select preference</option>\n";
 		foreach($result as $row)
 		{
-			echo "\t\t\t\t\t<option value=\"" . $row["reviewer_id"] . "\">" . $row["last_name"] . ", " . $row["first_name"] . "</option>\n";
+			if (in_array($row["keyword_id"], $keywords) && !in_array($row["reviewer_id"], $revList)) {
+				array_push($revList, $row["reviewer_id"]);
+				echo "\t\t\t\t\t<option value=\"" . $row["reviewer_id"] . "\">" . $row["last_name"] . ", " . $row["first_name"] . "</option>\n";
+			}
 		}
 		echo "\t\t\t\t</select></td>\n";
+
+		unset($revList);
+		$revList = array();
+		
 		$label++;
 	}
 	echo "\t\t\t</tr>\n";

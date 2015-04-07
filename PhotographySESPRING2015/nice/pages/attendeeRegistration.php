@@ -13,7 +13,7 @@
 				<caption><div class="title">Are you a student or a professional?</div></caption>
 				<tr>
 					<td>
-						<input required="required" type = "radio" name = "attendee" onClick="UpdateFilter()" value = "student" />Student
+						<input required="required" checked="true" type = "radio" name = "attendee" onClick="UpdateFilter()" value = "student" />Student
 						<input required="required" type = "radio" name = "attendee" onClick="UpdateFilter()" value = "professional" />Professional
 						<br />
 					</td>
@@ -41,7 +41,7 @@
 			<center><?php framework::includeScript("attendee", "php", "attOpportunities"); ?></center>
 		</div>
 		<div class="container">	<!-- 20 preference selectboxes -->
-			<center><span id="topTwenty"><?php framework::includeScript("attendee", "php", "topTwenty"); ?></span></center>
+			<center><span id="topTwenty"><?php framework::includeScript("attendee", "php", "createPrefList"); ?></span></center>
 		</div>
 		<table>
 			<tr>
