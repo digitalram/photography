@@ -3,6 +3,8 @@
 	ob_start();
 	session_start();
 
+	set_include_path(dirname(__FILE__));
+
 	$config = dirname(__FILE__) . "/includes/database.config.php";
 
 	// include database config
