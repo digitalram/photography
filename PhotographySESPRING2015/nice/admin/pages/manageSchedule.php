@@ -33,4 +33,4 @@
 	</tr>
 </table>
 
-<h3>Schedule Below...</h3>
+<h3><a href="../index.php?page=masterSchedule">Go To Schedule</a></h3>

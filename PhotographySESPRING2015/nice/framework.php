@@ -58,7 +58,7 @@
 		 */
 		public static function login($emailAddress, $password) {
 
-			$password = md5($password);
+			//$password = md5($password);
 
 
 			// query db for POST'd crds
