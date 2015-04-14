@@ -70,12 +70,14 @@ class Attendee
 	protected $id;
 	protected $reviewer_list;
 	protected $assigned;
+	protected $dates;
 	
 	public function __construct( $id, $reviewer_list ) 
 	{
 		$this->id = $id;
 		$this->reviewer_list = $reviewer_list;
 		$this->assigned = 0;
+		$this->dates = array();
 	}
 	
 	public function get_id()
@@ -102,6 +104,16 @@ class Attendee
 	public function bump()
 	{
 		$this->assigned += 1;
+	}
+	
+	public function add_date( $date )
+	{
+		array_push( $this->dates, $date );
+	}
+	
+	public function is_assigned_date( $date )
+	{
+		return in_array($date, $this->dates);
 	}
 
 }

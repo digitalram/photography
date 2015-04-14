@@ -311,7 +311,7 @@ class Scheduler
 				foreach($Attendees as $a){
 					// We will only consider adding an attendee that has a preference for this choice index
 					if( count($a->get_list()) > $c ){
-						if( (!$t->isFull()) and ($a->get_assigned() <= min($c, $MAX_ASSIGNED-1)) and ($a->get_reviewer($c) === $t->getReviewerId()) )
+						if( !($a->is_assigned_date( $t->getDaySlot() )) and (!$t->isFull()) and ($a->get_assigned() <= min($c, $MAX_ASSIGNED-1)) and ($a->get_reviewer($c) === $t->getReviewerId()) )
 						{
 							/* If the special case where Short Saturdays flag is set, 
 							 * and the table date ID = 'S3', then we will fill table 
@@ -319,6 +319,7 @@ class Scheduler
 							if( $shortSaturdaysFlag and $t->getDaySlot() === "S3" ){
 								if( !$t->isFull(4) ){
 									$t->addAttendee($a->get_id());
+									$a->add_date( $t->getDaySlot() );
 									$a->bump();
 									$matched++;
 								}
@@ -328,6 +329,7 @@ class Scheduler
 								//echo "<P>count:".$a->get_assigned()." min:".min($c, $MAX_ASSIGNED-1);
 								$t->addAttendee($a->get_id());
 								$a->bump();
+								$a->add_date( $t->getDaySlot() );
 								$matched++;
 							}
 						}
@@ -438,7 +440,7 @@ class Scheduler
 		
 		self::InsertTablesToSessions( $Tables , $registrationPeriodId );
 		
-		/* Do Saturday Schedule */
+		// Do Saturday Schedule
 		$Tables = self::makeTables("Saturday");
 		$Attendees = self::MakeAttendees("Saturday");
 
@@ -448,7 +450,7 @@ class Scheduler
 		
 		self::InsertTablesToSessions( $Tables , $registrationPeriodId );
 		
-		/* Update registration periods to show that schedule has been created */
+		// Update registration periods to show that schedule has been created
 		$sql = "UPDATE registration_periods SET schedule_created = 1 WHERE registration_period_id = '".$registrationPeriodId."'";
 		framework::execute($sql);
 		
