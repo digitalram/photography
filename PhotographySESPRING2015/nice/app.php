@@ -22,6 +22,16 @@
 				'S3' => 'saturday_afternoon'
 			);
 		}
+		
+		/**
+		 * Check to see if schedule is published
+		 * 
+		 * @return bool
+		 */ 
+		public static function isSchedulePublished() {
+			$reg_period = framework::getOne("SELECT	schedule_published FROM registration_periods WHERE year = '". date("Y") ."'");
+			return $reg_period["schedule_published"] == "yes";
+		}
 
 		/**
 		 * Check to see if registration is open via registration.flag file.
