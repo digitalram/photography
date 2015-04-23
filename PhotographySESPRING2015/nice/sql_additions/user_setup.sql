@@ -77,17 +77,17 @@ VALUES
 -- Insert reviewers
 INSERT INTO reviewers(reviewer_id, user_id, reviewer_type, friday_morning, friday_midday, friday_afternoon, saturday_morning, saturday_midday, saturday_afternoon) 
 VALUES 
-(1,10,2,'x','x',NULL,NULL,NULL,NULL), 
-(2,11,2,'x','x',NULL,NULL,NULL,NULL),
-(3,12,2,NULL,'x','x',NULL,NULL,NULL),
-(4,13,2,NULL,'x','x',NULL,NULL,NULL),
-(5,14,2,'x',NULL,'x',NULL,NULL,NULL),
-(6,15,2,'x',NULL,'x',NULL,NULL,NULL),
-(7,16,1,NULL,NULL,NULL,'x','x',NULL),
-(8,17,1,NULL,NULL,NULL,'x','x',NULL),
-(9,18,1,NULL,NULL,NULL,NULL,'x','x'),
-(10,19,1,NULL,NULL,NULL,NULL,'x','x'),
-(11,20,1,NULL,NULL,NULL,'x',NULL,'x');
+(10,10,2,'x','x',NULL,NULL,NULL,NULL), 
+(11,11,2,'x','x',NULL,NULL,NULL,NULL),
+(12,12,2,NULL,'x','x',NULL,NULL,NULL),
+(13,13,2,NULL,'x','x',NULL,NULL,NULL),
+(14,14,2,'x',NULL,'x',NULL,NULL,NULL),
+(15,15,2,'x',NULL,'x',NULL,NULL,NULL),
+(16,16,1,NULL,NULL,NULL,'x','x',NULL),
+(17,17,1,NULL,NULL,NULL,'x','x',NULL),
+(18,18,1,NULL,NULL,NULL,NULL,'x','x'),
+(19,19,1,NULL,NULL,NULL,NULL,'x','x'),
+(20,20,1,NULL,NULL,NULL,'x',NULL,'x');
 
 
 -- Insert reviewer keywords

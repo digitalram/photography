@@ -1,4 +1,11 @@
 <?php
+	/* Summary of this section:
+	 * Step 1, find all tables this reviewer occupies 
+	 * Step 2, move attendees to displaced_attendees tableNum
+	 * Step 3, delete reviewer attached to table ID and empty session table(table should be empty)
+	 * Step 4 (next group?) create method for admin to reassign displaced attendees
+	 * Step 5 (next group?) send email to displaced attendees informing them of reassignment
+	 */
 
 	include "../../../bootstrap.php";
 
@@ -12,7 +19,75 @@
 	// params
 	$reviewerId = framework::clean($request["reviewerId"]);
 	$registrationPeriodId = framework::clean($request["registrationPeriodId"]);
+	
+	/* Get reviewer name for status confirmation message */
+	$query = "SELECT first_name, last_name FROM users JOIN reviewers as r 
+	          WHERE r.reviewer_id = ". $reviewerId ." and users.user_id = r.user_id";
+	$names = framework::getOne($query);
+	$name = $names["first_name"] . " " . $names["last_name"];
 
+	/* Hold statistics to return */
+	$ret = array();
+	$ret["status"] = "success";
+	$ret["debug"] = "no errors";
+	$ret["name"] = $name;
+	
+	/* Step 1: Find all tables this reviewer occupies */
+	$query = "SELECT * FROM `session` WHERE reviewer_id = ". $reviewerId ."";
+	$sessions = framework::getMany($query);
+	
+	$displaced_count = 0;
+	/* Step 2: Insert displaced attendees into displaced attendee table */
+	foreach($sessions as $s){
+		$table = $s['table_num'];
+		$day_slot = $s['day_slot'];
+		$query = "";
+		if( $s["attendee_id1"] > 0 ){
+			$query = "INSERT INTO displaced_attendees(attendee_id, registration_period_id, prev_table_num, prev_time, prev_slot) VALUES (". $s["attendee_id1"] .",". $registrationPeriodId .",".$table.",'".$day_slot."',1 );";
+			framework::execute($query);
+			$displaced_count++;
+		}
+		if( $s['attendee_id2'] > 0 ){
+			$query = "INSERT INTO `displaced_attendees`(`attendee_id`, `registration_period_id`, `prev_table_num`, `prev_time`, `prev_slot`) VALUES (". $s['attendee_id2'] .",". $registrationPeriodId .",".$table.",'".$day_slot."',2 );";
+			framework::execute($query);
+			$displaced_count++;
+		}
+		if( $s['attendee_id3'] > 0  ){
+			$query = "INSERT INTO `displaced_attendees`(`attendee_id`, `registration_period_id`, `prev_table_num`, `prev_time`, `prev_slot`) VALUES (". $s['attendee_id3'] .",". $registrationPeriodId .",".$table.",'".$day_slot."',3 );";
+			framework::execute($query);
+			$displaced_count++;
+		}
+		if( $s['attendee_id4'] > 0  ){
+			$query = "INSERT INTO `displaced_attendees`(`attendee_id`, `registration_period_id`, `prev_table_num`, `prev_time`, `prev_slot`) VALUES (". $s['attendee_id4'] .",". $registrationPeriodId .",".$table.",'".$day_slot."',4 );";
+			framework::execute($query);
+			$displaced_count++;
+		}
+		if( $s['attendee_id5'] > 0  ){
+			$query = "INSERT INTO `displaced_attendees`(`attendee_id`, `registration_period_id`, `prev_table_num`, `prev_time`, `prev_slot`) VALUES (". $s['attendee_id5'] .",". $registrationPeriodId .",".$table.",'".$day_slot."',5 );";
+			framework::execute($query);
+			$displaced_count++;
+		}
+		if( $s['attendee_id6'] > 0 ){
+			$query = "INSERT INTO `displaced_attendees`(`attendee_id`, `registration_period_id`, `prev_table_num`, `prev_time`, `prev_slot`) VALUES (". $s['attendee_id6'] .",". $registrationPeriodId .",".$table.",'".$day_slot."',6 );";
+			framework::execute($query);
+			$displaced_count++;
+		}
+	}
+	$ret["counter"] = $displaced_count;
+	
+	/* Step 3: Empty the session table */
+	// $sessions should still contain the information for sessions of interest
+	foreach($sessions as $s){
+		$query = "UPDATE session SET reviewer_id=-1, attendee_id1=NULL, attendee_id2=NULL, attendee_id3=NULL, attendee_id4=NULL, attendee_id5=NULL, attendee_id6=NULL WHERE session_id = " .$s["session_id"]. ";";
+		framework::execute($query);
+	}
+	
+	
+	//echo json_encode(array("status" => "success"));
+	echo json_encode($ret);
+	/*
+	
+	
 	// basic
 	$fields = array(
 		"attendee_id1",
@@ -247,5 +322,5 @@
 	}
 
 	echo json_encode(array("status" => "success"));
-
+	*/
 ?>

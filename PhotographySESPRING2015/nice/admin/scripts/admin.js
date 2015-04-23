@@ -425,6 +425,9 @@ var admin = {
 
 		$.post("scripts/reviewer/removeReviewer.php", data, function(json) {
 			var result = $.parseJSON(json);
+			
+			/* Now working properly */
+			alert("Successfully deleted " + result.name + ":"  + result.counter + " attendees displaced.\n" + result.debug + "\n");
 
 			if(result.status == "success") {
 				$("tr#reviewer_row_" + reviewerId).find("td").each(function(i, td) {

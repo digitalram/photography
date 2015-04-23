@@ -5,10 +5,11 @@
 		<li><a href="#tabs-2">Manage Schedule</a></li>
 		<li><a href="#tabs-3">Manage Attendees</a></li>
 		<li><a href="#tabs-4">Manage Reviewers</a></li>
-		<li><a href="#tabs-5">Manage Keywords</a></li>
-		<li><a href="#tabs-6">Manage Opportunities</a></li>
-		<li><a href="#tabs-7">Manage E-mail</a></li>
-		<li><a href="#tabs-8">Send E-mail</a></li>
+		<li><a href="#tabs-5">Displaced Attendees</a></li>
+		<li><a href="#tabs-6">Manage Keywords</a></li>
+		<li><a href="#tabs-7">Manage Opportunities</a></li>
+		<li><a href="#tabs-8">Manage E-mail</a></li>
+		<li><a href="#tabs-9">Send E-mail</a></li>
 
 	</ul>
 	<!-- Overview -->
@@ -27,16 +28,23 @@
 	<div id="tabs-4">
 		<?php include "pages/manageReviewers.php"; ?>
 	</div>
+	
+	<!-- Manage Displaced Attendees -->
 	<div id="tabs-5">
+		<?php include "pages/manageDisplacedAttendees.php"; ?>
+	</div>	
+	
+	
+	<div id="tabs-6">
 		<?php include "pages/manageKeywords.php"; ?>
 	</div>
-	<div id="tabs-6">
+	<div id="tabs-7">
 		<?php include "pages/manageOpportunities.php"; ?>
 	</div>
-	<div id="tabs-7">
+	<div id="tabs-8">
 		<?php include "pages/manageEmail.php"; ?>
 	</div>
-	<div id="tabs-8">
+	<div id="tabs-9">
 		<?php include "pages/sendEmail.php"; ?>
 	</div>
 
