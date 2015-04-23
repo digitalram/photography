@@ -564,7 +564,7 @@ var admin = {
 
 			if(ret.status == "success") {
 				alert("New keyword added!");
-				window.location = "index.php#tabs-4";
+				window.location = "index.php#tabs-6";
 				if(window.location.hash != "") {
 					window.location.reload();
 				}
@@ -672,7 +672,7 @@ var admin = {
 
 			if(ret.status == "success") {
 				alert("New opportunity added!");
-				window.location = "index.php#tabs-5";
+				window.location = "index.php#tabs-7";
 				if(window.location.hash != "") {
 					window.location.reload();
 				}

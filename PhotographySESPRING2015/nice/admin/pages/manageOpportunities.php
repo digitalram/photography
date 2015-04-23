@@ -11,7 +11,7 @@
 	</tr>
 	<?php
 
-	$opportunities = framework::getMany("SELECT * FROM opportunity_definition");
+	$opportunities = framework::getMany("SELECT * FROM opportunity_definition ORDER BY name");
 
 	$html = "";
 

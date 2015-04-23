@@ -11,7 +11,7 @@
 	</tr>
 	<?php
 
-	$keywords = framework::getMany("SELECT * FROM keyword_definition");
+	$keywords = framework::getMany("SELECT * FROM keyword_definition ORDER BY name");
 
 	$html = "";
 
